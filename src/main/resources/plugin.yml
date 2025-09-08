@@ -1,0 +1,28 @@
+name: RogueEnchants
+main: com.simple.rogueenchants.RogueEnchantsPlugin
+version: 1.1.0
+api-version: 1.21
+authors: [ "Simple" ]
+description: >
+  Random per-player global enchants with low-lag modifiers (no potions),
+  steal on kill, ritual-based Fortified Egg upgrades (+extra dragon egg on next kill),
+  XP vouchers, and admin testing commands.
+
+commands:
+  re:
+    description: RogueEnchants admin/testing command
+    usage: /re <list|view|set|level|reroll|steal|reload|scroll|trader>
+    permission: rogueenchants.admin
+    aliases: [ rogueenchant, renc ]
+  withdrawxp:
+    description: Convert your XP points into a redeemable voucher item
+    usage: /withdrawxp <amount>
+    permission: rogueenchants.withdraw
+
+permissions:
+  rogueenchants.admin:
+    description: Allows all RogueEnchants admin/testing commands
+    default: op
+  rogueenchants.withdraw:
+    description: Allows /withdrawxp to create XP voucher items
+    default: true

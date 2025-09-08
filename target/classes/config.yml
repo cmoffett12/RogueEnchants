@@ -1,0 +1,167 @@
+# Tunables
+enchants:
+  lifesteal:
+    heal-percent-per-level: 3   # percent of final damage healed per level
+  builder_haste:
+    amplifier-per-level: 1         # potion amplifier increment per level
+  fortify:
+    amplifier-per-level: 1         # potion amplifier increment per level
+
+base-max-level: 3
+
+passive-refresh-ticks: 200
+
+# Mystic scroll recipe
+scroll:
+  shape:
+    - "LA "
+    - " P "
+  ingredients:
+    L: LAPIS_LAZULI
+    A: AMETHYST_SHARD
+    P: PAPER
+
+# Dragon egg upgrade ingredients (shapeless)
+egg-upgrade:
+  requires:
+    - DRAGON_EGG
+    - NETHERITE_BLOCK
+    - DIAMOND_BLOCK
+    - GOLD_BLOCK
+
+# Max levels
+base-max-level: 3
+egg:
+  plain-boost: 1      # +1 cap if any normal Dragon Egg in inventory
+  fortified-boost: 2  # +2 cap if Fortified Egg in inventory (highest wins)
+
+# Ritual craft (seconds)
+ritual:
+  duration-seconds: 60
+  broadcast: "&d[Fortified Ritual]&7 at &b%world% &7x:&b%x% &7y:&b%y% &7z:&b%z%"
+
+# Allow Mending/Unbreaking on anvil/villagers
+anvil:
+  allow-books: [ "MENDING", "UNBREAKING" ]
+
+# Builder’s Haste mining speed (no potions)
+builder_haste:
+  breakspeed-mult-per-level: 0.20   # +20% per level (x1.2 L1, x1.4 L2, x1.6 L3/4/5 cap)
+
+# Fortify damage reduction (no potions) – applied to final damage
+fortify:
+  percent-reduction-per-level: 0.08 # 8% per level (24% at L3; 40% at L5 with fortified egg)
+
+# XP vouchers
+xp:
+  voucher-name: "&aXP Voucher"
+  voucher-lore: [ "&7Redeem to gain &a%amount% XP&7." ]
+
+# Hamburger Toggle
+items:
+  hamburger:
+    crafting-enabled: true
+
+# --- Enchant caps are already configured above ---
+water_affinity:
+  check-period-ticks: 40         # how often we check players (every 2s)
+  conduit-seconds: 8             # Conduit Power duration when in water
+  dolphins-seconds: 8            # Dolphin's Grace duration when in water
+  dolphins-amplifier: 0          # 0 = level I
+
+smite:
+  # Bonus damage vs undead (additive multiplier).
+  # finalDamage = finalDamage * (1.0 + undead-damage-bonus-per-level * level)
+  undead-damage-bonus-per-level: 0.15
+
+  # Level 2+: Hero of the Village
+  hero:
+    amplifier-lvl2: 0     # HoTV I
+    amplifier-lvl4: 1     # HoTV II when Smite >= 4
+    seconds: 90           # effect length each refresh
+    refresh-ticks: 200    # how often we refresh (10s)
+
+  # Level 3+: Lightning trigger on big hits
+  lightning:
+    threshold-lvl3: 10.0  # damage to trigger (final damage)
+    threshold-lvl4: 5.0   # reduced threshold when Smite >= 4
+    positive-effect-seconds: 30
+    cooldown-seconds: 10  # per-player cooldown
+
+  # Level 5: Fear — mobs won’t target the player
+  fear:
+    enabled: true
+
+channeling:
+  # Riptide-like dash (lvl 1+)
+  riptide:
+    speed: 1.4            # horizontal launch scalar
+    vertical-boost: 0.8   # extra Y boost
+    cooldown-ticks: 20    # tiny spam guard (1s = 20 ticks)
+    require-trident: false
+
+  # Triple jump in rain (lvl 2+)
+  triple_jump:
+    enabled: true
+    require-trident: false
+    rain-only: true       # only when world.isThundering() || world.hasStorm()
+    max-midair-jumps: 2   # “triple” = 2 midair jumps
+    vertical-boost: 0.9
+    forward-boost: 0.2
+    particle: CLOUD
+    particle-points: 24
+    particle-radius: 0.9
+    channeling:
+
+  riptide:
+    require-trident: false      # don't need to hold a trident (or any item)
+    require-weather: false      # don't need rain/water (if you added this toggle earlier)
+  debug: true
+
+  # --- Channeling ---
+channeling:
+  riptide:
+    cooldown-ticks: 20      # dash cooldown (1s)
+    speed: 1.4
+    vertical-boost: 0.8
+  l2:
+    chain-chance: 0.15
+    chain-radius: 4
+    chain-damage: 2.0
+  l3:
+    stacks-need: 3
+    burst-radius: 5
+    burst-damage: 4.0
+  l5:
+    smite-radius: 8
+    max-per-tick: 2
+    smite-damage: 3.0
+    combat-window-ms: 10000
+# --- Feather Falling ---
+feather:
+  l1:
+    reduce: 0.40            # 40% fall damage reduction
+  l2:
+    duration-sec: 30
+    cooldown-ms: 30000
+  l5:
+    radius: 5.0
+    knockback: 1.2
+
+# --- Shadowstep ---
+shadowstep:
+  l1:
+    cancel-chance: 0.35     # chance to cancel mob targeting while sneaking
+  l2:
+    ambush-multiplier: 1.25
+  l3:
+    arm-ms: 3000
+    invis-ticks: 80
+  l4:
+    cooldown-ms: 30000
+    teleport-radius: 5.0
+  l5:
+    backstab-multiplier: 1.75
+    invis-ticks: 600            # 30s invis at L5 when Smoke Veil triggers
+    blink-cooldown-ms: 15000
+    blink-max-distance: 16
